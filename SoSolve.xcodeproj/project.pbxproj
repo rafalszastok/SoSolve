@@ -28,6 +28,7 @@
 		6E8D91F42765CDC400F7FFD0 /* GalleryListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E8D91F32765CDC400F7FFD0 /* GalleryListCollectionViewCell.swift */; };
 		6E8D91F62765CF6C00F7FFD0 /* ListViewControllerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E8D91F52765CF6C00F7FFD0 /* ListViewControllerFactory.swift */; };
 		6E8D91F82765D24F00F7FFD0 /* GalleryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E8D91F72765D24F00F7FFD0 /* GalleryItem.swift */; };
+		6E8D91FB2765E70200F7FFD0 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 6E8D91FA2765E70200F7FFD0 /* Kingfisher */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +80,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6E8D91FB2765E70200F7FFD0 /* Kingfisher in Frameworks */,
 				6E0650EC2764F52700EB364D /* Swinject in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -244,6 +246,7 @@
 			name = SoSolve;
 			packageProductDependencies = (
 				6E0650EB2764F52700EB364D /* Swinject */,
+				6E8D91FA2765E70200F7FFD0 /* Kingfisher */,
 			);
 			productName = SoSolve;
 			productReference = 6E0650B42764F21900EB364D /* SoSolve.app */;
@@ -319,6 +322,7 @@
 			mainGroup = 6E0650AB2764F21900EB364D;
 			packageReferences = (
 				6E0650EA2764F52700EB364D /* XCRemoteSwiftPackageReference "Swinject" */,
+				6E8D91F92765E70200F7FFD0 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = 6E0650B52764F21900EB364D /* Products */;
 			projectDirPath = "";
@@ -732,6 +736,14 @@
 				version = 2.8.1;
 			};
 		};
+		6E8D91F92765E70200F7FFD0 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher";
+			requirement = {
+				kind = exactVersion;
+				version = 7.1.2;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -739,6 +751,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 6E0650EA2764F52700EB364D /* XCRemoteSwiftPackageReference "Swinject" */;
 			productName = Swinject;
+		};
+		6E8D91FA2765E70200F7FFD0 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6E8D91F92765E70200F7FFD0 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

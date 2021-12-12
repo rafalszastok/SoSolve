@@ -54,17 +54,20 @@ final class ListView: UIView {
         })
     }
 
-
     private static func makeCollectionViewLayout() -> UICollectionViewLayout {
 
-        let sectionProvider = { (sectionIndex: Int, layoutEnvironment: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection? in
+        let fraction: CGFloat = 1 / 2
 
-            let configution = UICollectionLayoutListConfiguration(appearance: .insetGrouped)
-            let section = NSCollectionLayoutSection.list(using: configution, layoutEnvironment: layoutEnvironment)
-            section.interGroupSpacing = 10
-            return section
-        }
+        // Item
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1))
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
 
-        return UICollectionViewCompositionalLayout(sectionProvider: sectionProvider)
+        // Group
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalWidth(fraction))
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+
+        // Section
+        let section = NSCollectionLayoutSection(group: group)
+        return UICollectionViewCompositionalLayout(section: section)
     }
 }

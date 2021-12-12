@@ -6,10 +6,20 @@
 //
 
 import UIKit
+import Kingfisher
 
 struct GalleryListCellStyle {
     static let insets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
-    static let spacing: CGFloat = 8
+    static let interitemSpacing: CGFloat = 16
+    static let labelDescriptionSpacing: CGFloat = 16
+    static let imageRatio: CGFloat = 4.0/3.0
+
+    static func backgroundColor(isSelected: Bool) -> UIColor {
+        return isSelected ? .systemOrange : .white
+    }
+
+    static let imageBackgroundColor = UIColor(white: 0.0, alpha: 0.05)
+
 }
 
 final class GalleryListCollectionViewCell: UICollectionViewCell {
@@ -19,8 +29,8 @@ final class GalleryListCollectionViewCell: UICollectionViewCell {
 
     var galleryImageView: UIImageView = {
         let image = UIImageView()
-        image.backgroundColor = .gray
-        image.contentMode = .scaleAspectFill
+        image.backgroundColor = Style.imageBackgroundColor
+        image.contentMode = .scaleAspectFit
         image.translatesAutoresizingMaskIntoConstraints = false
         return image
     }()
@@ -33,6 +43,12 @@ final class GalleryListCollectionViewCell: UICollectionViewCell {
     }()
 
     var model: GalleryItem? {
+        didSet {
+            applyModel()
+        }
+    }
+
+    override var isSelected: Bool {
         didSet {
             applyModel()
         }
@@ -52,6 +68,10 @@ final class GalleryListCollectionViewCell: UICollectionViewCell {
         setupConstraints()
     }
 
+    private func setupStyle() {
+        backgroundColor = Style.backgroundColor(isSelected: false)
+    }
+
     private func setupConstraints() {
         addSubview(galleryImageView)
         addSubview(galleryDescriptionLabel)
@@ -63,7 +83,7 @@ final class GalleryListCollectionViewCell: UICollectionViewCell {
                 constant: Style.insets.left),
             galleryDescriptionLabel.leadingAnchor.constraint(
                 equalTo: galleryImageView.trailingAnchor,
-                constant: Style.spacing),
+                constant: Style.labelDescriptionSpacing),
             trailingAnchor.constraint(
                 equalTo: galleryDescriptionLabel.trailingAnchor,
                 constant: Style.insets.right)
@@ -74,23 +94,38 @@ final class GalleryListCollectionViewCell: UICollectionViewCell {
             galleryImageView.topAnchor.constraint(
                 equalTo: topAnchor,
                 constant: Style.insets.top),
-            galleryImageView.bottomAnchor.constraint(
-                equalTo: bottomAnchor,
+            bottomAnchor.constraint(
+                equalTo: galleryImageView.bottomAnchor,
                 constant: Style.insets.bottom),
             galleryDescriptionLabel.topAnchor.constraint(
                 equalTo: topAnchor,
                 constant: Style.insets.top),
-            galleryDescriptionLabel.bottomAnchor.constraint(
-                equalTo: bottomAnchor,
+            bottomAnchor.constraint(
+                equalTo: galleryDescriptionLabel.bottomAnchor,
                 constant: Style.insets.bottom)
+        ])
+
+        // Other
+        NSLayoutConstraint.activate([
+            galleryImageView.heightAnchor.constraint(
+                equalTo: galleryImageView.widthAnchor,
+                multiplier: Style.imageRatio)
         ])
     }
 
     private func applyModel() {
-        backgroundColor = .orange
         guard let model = model else {
             return
         }
+
+        backgroundColor = Style.backgroundColor(isSelected: isSelected)
+
         galleryDescriptionLabel.text = model.gallery.name
+
+        guard let firstPhotoString = model.gallery.photoUrls.first, let photoUrl = URL(string: firstPhotoString) else {
+            return
+        }
+        galleryImageView.kf.setImage(with: photoUrl, placeholder: nil, options: [.transition(.fade(1))])
+
     }
 }
