@@ -10,9 +10,15 @@ import Swinject
 
 final class DefaultAssembly: Assembly {
     func assemble(container: Container) {
+
         container.register(GalleryContentService.self, factory: {
             _ in
             ConcreteGalleryContentService()
+        })
+
+        container.register(NavigationService.self, factory: {
+            _ in
+            ConcreteNavigationService()
         })
     }
 }

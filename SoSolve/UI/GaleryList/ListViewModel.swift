@@ -45,18 +45,17 @@ final class ListViewModel {
         case .viewDidLoad:
             fetchContent()
         case .selected(let galleryItem):
-            print(galleryItem)
+            let navigationService = resolver.resolve(NavigationService.self)!
+            navigationService.selected(gallery: galleryItem.gallery)
         }
     }
 
     private func fetchContent() {
-        guard let galeryContentService = resolver.resolve(GalleryContentService.self) else {
-            assertionFailure("galeryContentService not set up")
-            return
-        }
+
+        let galleryContentService = resolver.resolve(GalleryContentService.self)!
 
         downloadGalleriesTask = Task.detached {
-            let galleries = await galeryContentService.fetchData()
+            let galleries = await galleryContentService.fetchData()
                 .filter {
                     gallery in
                     guard let name = gallery.name else {
