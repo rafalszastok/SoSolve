@@ -8,17 +8,19 @@
 import UIKit
 
 final class ListView: UIView {
-
     lazy var collectionView: UICollectionView = {
-
         let layout = UICollectionViewFlowLayout()
         let collectionView = UICollectionView(
             frame: bounds,
-            collectionViewLayout: layout)
+            collectionViewLayout: layout
+        )
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.register(
             GalleryListCollectionViewCell.self,
-            forCellWithReuseIdentifier: GalleryListCollectionViewCell.reuseIdentifier)
+            forCellWithReuseIdentifier: GalleryListCollectionViewCell.reuseIdentifier
+        )
+
+        collectionView.contentSize
         return collectionView
 
     }()
@@ -45,15 +47,15 @@ final class ListView: UIView {
         soSolve.layoutInstall(subview: collectionView)
 
         dataSource = GalleryListDataSource(collectionView: collectionView, cellProvider: {
-           (collectionView, indexPath, galleryModel) -> GalleryListCollectionViewCell? in
-
+            (collectionView, indexPath, galleryModel) -> GalleryListCollectionViewCell? in
 
             let cell: GalleryListCollectionViewCell = collectionView.dequeueReusableCell(
                 withReuseIdentifier: GalleryListCollectionViewCell.reuseIdentifier,
-                for: indexPath) as! GalleryListCollectionViewCell
-           cell.model = galleryModel
-           return cell
+                for: indexPath
+            ) as! GalleryListCollectionViewCell
+            cell.model = galleryModel
+            return cell
 
-       })
+        })
     }
 }

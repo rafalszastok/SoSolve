@@ -8,11 +8,10 @@
 import UIKit
 
 final class ListViewController: UIViewController {
-
     private var viewModel: ListViewModel!
 
     private lazy var listView: ListView = {
-        return ListView()
+        ListView()
     }()
 
     override func viewDidLoad() {
@@ -27,10 +26,7 @@ final class ListViewController: UIViewController {
 }
 
 extension ListViewController: ListViewModelDelegate {
-    
     func show(snapshot: GalleryListDataSourceSnapshot) {
         listView.dataSource.apply(snapshot, animatingDifferences: true)
     }
-
-
 }

@@ -8,7 +8,6 @@
 import Foundation
 
 struct GalleryItem: Hashable {
-
     let uuid = UUID()
     let gallery: Gallery
 
@@ -21,4 +20,3 @@ struct GalleryItem: Hashable {
         hasher.combine(uuid)
     }
 }
-

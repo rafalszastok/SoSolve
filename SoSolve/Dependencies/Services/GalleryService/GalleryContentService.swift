@@ -12,14 +12,11 @@ public protocol GalleryContentService {
 }
 
 public final class ConcreteGalleryContentService: GalleryContentService {
-
     public func fetchData() async -> [Gallery] {
-
-        return await withCheckedContinuation({ continuation in
+        return await withCheckedContinuation { continuation in
             GallerySDK.fetchData { result in
                 continuation.resume(with: Result.success(result))
             }
-        })
-
+        }
     }
 }

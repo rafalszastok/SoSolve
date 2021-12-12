@@ -9,11 +9,10 @@ import UIKit
 
 @available(iOS 13.0, *)
 final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
-
     var window: UIWindow?
     var flowRouter: FlowRouter?
 
-    func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
+    func scene(_ scene: UIScene, willConnectTo _: UISceneSession, options _: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
 
         let window = UIWindow(windowScene: windowScene)
@@ -27,23 +26,23 @@ final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         self.window?.makeKeyAndVisible()
     }
 
-    func sceneDidDisconnect(_ scene: UIScene) {
+    func sceneDidDisconnect(_: UIScene) {
         // Called as the scene is being released by the system.
     }
 
-    func sceneDidBecomeActive(_ scene: UIScene) {
+    func sceneDidBecomeActive(_: UIScene) {
         // Not called under iOS 12 - See AppDelegate applicationDidBecomeActive
     }
 
-    func sceneWillResignActive(_ scene: UIScene) {
+    func sceneWillResignActive(_: UIScene) {
         // Not called under iOS 12 - See AppDelegate applicationWillResignActive
     }
 
-    func sceneWillEnterForeground(_ scene: UIScene) {
+    func sceneWillEnterForeground(_: UIScene) {
         // Not called under iOS 12 - See AppDelegate applicationWillEnterForeground
     }
 
-    func sceneDidEnterBackground(_ scene: UIScene) {
+    func sceneDidEnterBackground(_: UIScene) {
         // Not called under iOS 12 - See AppDelegate applicationDidEnterBackground
     }
 }

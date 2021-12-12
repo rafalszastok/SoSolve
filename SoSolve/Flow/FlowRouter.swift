@@ -10,7 +10,6 @@ import Swinject
 import UIKit
 
 final class FlowRouter {
-
     let resolver: Resolver
     weak var window: UIWindow?
 

@@ -17,11 +17,9 @@ final class GalleryListCollectionViewCell: UICollectionViewCell {
     }
 
     private func applyModel() {
-
         backgroundColor = .orange
         guard let model = model else {
             return
         }
-
     }
 }

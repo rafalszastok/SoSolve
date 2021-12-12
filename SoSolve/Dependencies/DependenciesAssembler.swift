@@ -13,6 +13,7 @@ final class AssemblerFactory {
         return Assembler(
             [DefaultAssembly()],
             parent: nil,
-            defaultObjectScope: .container)
+            defaultObjectScope: .container
+        )
     }
 }

@@ -9,7 +9,6 @@ import Foundation
 import Swinject
 
 final class ListViewControllerFactory {
-
     static func make(resolver: Resolver) -> ListViewController {
         let viewModel = ListViewModel(resolver: resolver)
         let viewController = ListViewController()

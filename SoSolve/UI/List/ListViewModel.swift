@@ -13,10 +13,10 @@ enum ListViewModelInputEvent {
     case viewDidLoad
 }
 
-
 enum GalleryListSection {
     case main
 }
+
 typealias GalleryListDataSource = UICollectionViewDiffableDataSource<GalleryListSection, GalleryItem>
 typealias GalleryListDataSourceSnapshot = NSDiffableDataSourceSnapshot<GalleryListSection, GalleryItem>
 
@@ -25,11 +25,10 @@ protocol ListViewModelDelegate: AnyObject {
 }
 
 final class ListViewModel {
-
     private let resolver: Resolver
     private weak var delegate: ListViewModelDelegate?
 
-    private var downloadGalleriesTask: Task<(), Never>? {
+    private var downloadGalleriesTask: Task<Void, Never>? {
         didSet {
             oldValue?.cancel()
         }
@@ -43,7 +42,6 @@ final class ListViewModel {
         switch event {
         case .viewDidLoad:
             fetchContent()
-
         }
     }
 
@@ -63,6 +61,5 @@ final class ListViewModel {
                 self.delegate?.show(snapshot: dataSourceSnapshot)
             }
         }
-
     }
 }

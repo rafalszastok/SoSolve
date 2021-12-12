@@ -8,7 +8,6 @@
 import XCTest
 
 class SoSolveUITestsLaunchTests: XCTestCase {
-
     override class var runsForEachTargetApplicationUIConfiguration: Bool {
         true
     }
