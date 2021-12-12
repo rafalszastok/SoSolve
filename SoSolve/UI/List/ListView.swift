@@ -10,11 +10,13 @@ import UIKit
 final class ListView: UIView {
 
     lazy var collectionView: UICollectionView = {
+
         let layout = ListView.makeCollectionViewLayout()
         let collectionView = UICollectionView(
             frame: bounds,
             collectionViewLayout: layout
         )
+
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.register(
             GalleryListCollectionViewCell.self,
@@ -24,8 +26,6 @@ final class ListView: UIView {
         return collectionView
 
     }()
-
-    var dataSource: GalleryListDataSource!
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -40,22 +40,9 @@ final class ListView: UIView {
     private func setup() {
         backgroundColor = .orange
         soSolve.layoutInstall(subview: collectionView)
-
-        dataSource = GalleryListDataSource(collectionView: collectionView, cellProvider: {
-            (collectionView, indexPath, galleryModel) -> GalleryListCollectionViewCell? in
-
-            let cell: GalleryListCollectionViewCell = collectionView.dequeueReusableCell(
-                withReuseIdentifier: GalleryListCollectionViewCell.reuseIdentifier,
-                for: indexPath
-            ) as! GalleryListCollectionViewCell
-            cell.model = galleryModel
-            return cell
-
-        })
     }
 
     private static func makeCollectionViewLayout() -> UICollectionViewLayout {
-
         let fraction: CGFloat = 1 / 2
 
         // Item

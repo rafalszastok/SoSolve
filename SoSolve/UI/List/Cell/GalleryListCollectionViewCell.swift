@@ -5,21 +5,20 @@
 //  Created by Rafal Szastok on 12/12/2021.
 //
 
-import UIKit
 import Kingfisher
+import UIKit
 
 struct GalleryListCellStyle {
     static let insets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
     static let interitemSpacing: CGFloat = 16
     static let labelDescriptionSpacing: CGFloat = 16
-    static let imageRatio: CGFloat = 4.0/3.0
+    static let imageRatio: CGFloat = 4.0 / 3.0
 
     static func backgroundColor(isSelected: Bool) -> UIColor {
         return isSelected ? .systemOrange : .white
     }
 
     static let imageBackgroundColor = UIColor(white: 0.0, alpha: 0.05)
-
 }
 
 final class GalleryListCollectionViewCell: UICollectionViewCell {
@@ -80,36 +79,44 @@ final class GalleryListCollectionViewCell: UICollectionViewCell {
         NSLayoutConstraint.activate([
             galleryImageView.leadingAnchor.constraint(
                 equalTo: leadingAnchor,
-                constant: Style.insets.left),
+                constant: Style.insets.left
+            ),
             galleryDescriptionLabel.leadingAnchor.constraint(
                 equalTo: galleryImageView.trailingAnchor,
-                constant: Style.labelDescriptionSpacing),
+                constant: Style.labelDescriptionSpacing
+            ),
             trailingAnchor.constraint(
                 equalTo: galleryDescriptionLabel.trailingAnchor,
-                constant: Style.insets.right)
+                constant: Style.insets.right
+            ),
         ])
 
         // Vertical
         NSLayoutConstraint.activate([
             galleryImageView.topAnchor.constraint(
                 equalTo: topAnchor,
-                constant: Style.insets.top),
+                constant: Style.insets.top
+            ),
             bottomAnchor.constraint(
                 equalTo: galleryImageView.bottomAnchor,
-                constant: Style.insets.bottom),
+                constant: Style.insets.bottom
+            ),
             galleryDescriptionLabel.topAnchor.constraint(
                 equalTo: topAnchor,
-                constant: Style.insets.top),
+                constant: Style.insets.top
+            ),
             bottomAnchor.constraint(
                 equalTo: galleryDescriptionLabel.bottomAnchor,
-                constant: Style.insets.bottom)
+                constant: Style.insets.bottom
+            ),
         ])
 
         // Other
         NSLayoutConstraint.activate([
             galleryImageView.heightAnchor.constraint(
                 equalTo: galleryImageView.widthAnchor,
-                multiplier: Style.imageRatio)
+                multiplier: Style.imageRatio
+            ),
         ])
     }
 
@@ -126,6 +133,5 @@ final class GalleryListCollectionViewCell: UICollectionViewCell {
             return
         }
         galleryImageView.kf.setImage(with: photoUrl, placeholder: nil, options: [.transition(.fade(1))])
-
     }
 }

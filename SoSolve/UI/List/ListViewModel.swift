@@ -11,6 +11,7 @@ import UIKit
 
 enum ListViewModelInputEvent {
     case viewDidLoad
+    case selected(GalleryItem)
 }
 
 enum GalleryListSection {
@@ -43,6 +44,8 @@ final class ListViewModel {
         switch event {
         case .viewDidLoad:
             fetchContent()
+        case .selected(let galleryItem):
+            print(galleryItem)
         }
     }
 
@@ -53,7 +56,15 @@ final class ListViewModel {
         }
 
         downloadGalleriesTask = Task.detached {
-            let galleries = await galeryContentService.fetchData().map { GalleryItem(gallery: $0) }
+            let galleries = await galeryContentService.fetchData()
+                .filter {
+                    gallery in
+                    guard let name = gallery.name else {
+                        return false
+                    }
+                    return !name.isEmpty && gallery.photoUrls.count > 0
+                }
+                .map { GalleryItem(gallery: $0) }
 
             DispatchQueue.main.async {
                 var dataSourceSnapshot = GalleryListDataSourceSnapshot()
