@@ -26,7 +26,7 @@ final class FlowRouter {
             [weak self]
             navigationScene in
             switch navigationScene {
-            case .detailView(let gallery):
+            case let .detailView(gallery):
                 self?.presentDetails(gallery: gallery)
             }
         }
@@ -44,5 +44,4 @@ final class FlowRouter {
         let detailsViewController = GalleryDetailsViewControllerFactory.make(resolver: resolver, gallery: gallery)
         navigationController.pushViewController(detailsViewController, animated: true)
     }
-
 }

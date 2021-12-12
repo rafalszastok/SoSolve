@@ -8,9 +8,7 @@
 import UIKit
 
 final class ListView: UIView {
-
     lazy var collectionView: UICollectionView = {
-
         let layout = ListView.makeCollectionViewLayout()
         let collectionView = UICollectionView(
             frame: bounds,

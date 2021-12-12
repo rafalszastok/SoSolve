@@ -27,7 +27,6 @@ final class ListViewController: UIViewController {
     }
 
     private func setupCollection() {
-
         listView.collectionView.delegate = self
 
         collectionDataSource = GalleryListDataSource(collectionView: listView.collectionView, cellProvider: {
@@ -41,7 +40,6 @@ final class ListViewController: UIViewController {
             return cell
 
         })
-
     }
 }
 
@@ -52,9 +50,7 @@ extension ListViewController: ListViewModelDelegate {
 }
 
 extension ListViewController: UICollectionViewDelegate {
-
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-
+    func collectionView(_: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let item = collectionDataSource.itemIdentifier(for: indexPath) else {
             assertionFailure("Could not obtain item from data source")
             return

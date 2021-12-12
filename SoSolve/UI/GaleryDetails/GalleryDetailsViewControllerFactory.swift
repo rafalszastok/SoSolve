@@ -12,8 +12,10 @@ final class GalleryDetailsViewControllerFactory {
     static func make(resolver: Resolver, gallery: Gallery) -> GalleryDetailsViewController {
         let viewModel = GalleryDetailsViewModel(resolver: resolver, gallery: gallery)
         let viewController = GalleryDetailsViewController()
+
         viewController.inject(viewModel: viewModel)
         viewModel.delegate = viewController
+
         return viewController
     }
 }

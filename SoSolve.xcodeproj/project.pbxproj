@@ -34,7 +34,7 @@
 		6E8D920527663B2F00F7FFD0 /* GalleryDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E8D920127663B2F00F7FFD0 /* GalleryDetailsView.swift */; };
 		6E8D920627663B2F00F7FFD0 /* GalleryDetailsViewControllerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E8D920227663B2F00F7FFD0 /* GalleryDetailsViewControllerFactory.swift */; };
 		6E8D920727663B2F00F7FFD0 /* GalleryDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E8D920327663B2F00F7FFD0 /* GalleryDetailsViewModel.swift */; };
-		6E8D920A27663B7F00F7FFD0 /* GalleryDetailsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E8D920927663B7F00F7FFD0 /* GalleryDetailsCollectionViewCell.swift */; };
+		6E8D920C27664DF500F7FFD0 /* SimpleTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E8D920B27664DF500F7FFD0 /* SimpleTimer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,7 +84,7 @@
 		6E8D920127663B2F00F7FFD0 /* GalleryDetailsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryDetailsView.swift; sourceTree = "<group>"; };
 		6E8D920227663B2F00F7FFD0 /* GalleryDetailsViewControllerFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryDetailsViewControllerFactory.swift; sourceTree = "<group>"; };
 		6E8D920327663B2F00F7FFD0 /* GalleryDetailsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryDetailsViewModel.swift; sourceTree = "<group>"; };
-		6E8D920927663B7F00F7FFD0 /* GalleryDetailsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryDetailsCollectionViewCell.swift; sourceTree = "<group>"; };
+		6E8D920B27664DF500F7FFD0 /* SimpleTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleTimer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,7 +139,7 @@
 			children = (
 				6E0650B72764F21900EB364D /* AppDelegate.swift */,
 				6E0651DB27654F5400EB364D /* SceneDelegate.swift */,
-				6E0651032764FB3100EB364D /* UITools */,
+				6E0651032764FB3100EB364D /* Tools */,
 				6E0650F12764F55600EB364D /* UI */,
 				6E0650F22764F56600EB364D /* Flow */,
 				6E0650F32764F57000EB364D /* Dependencies */,
@@ -225,13 +225,14 @@
 			path = GaleryList;
 			sourceTree = "<group>";
 		};
-		6E0651032764FB3100EB364D /* UITools */ = {
+		6E0651032764FB3100EB364D /* Tools */ = {
 			isa = PBXGroup;
 			children = (
 				6E0651042764FBA800EB364D /* UIView+install.swift */,
 				6E0651062764FBFD00EB364D /* ExtensionCompatible.swift */,
+				6E8D920B27664DF500F7FFD0 /* SimpleTimer.swift */,
 			);
-			path = UITools;
+			path = Tools;
 			sourceTree = "<group>";
 		};
 		6E8D91F22765CDB600F7FFD0 /* Cell */ = {
@@ -257,17 +258,8 @@
 				6E8D920027663B2F00F7FFD0 /* GalleryDetailsViewController.swift */,
 				6E8D920227663B2F00F7FFD0 /* GalleryDetailsViewControllerFactory.swift */,
 				6E8D920327663B2F00F7FFD0 /* GalleryDetailsViewModel.swift */,
-				6E8D920827663B7400F7FFD0 /* Cell */,
 			);
 			path = GaleryDetails;
-			sourceTree = "<group>";
-		};
-		6E8D920827663B7400F7FFD0 /* Cell */ = {
-			isa = PBXGroup;
-			children = (
-				6E8D920927663B7F00F7FFD0 /* GalleryDetailsCollectionViewCell.swift */,
-			);
-			path = Cell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -420,13 +412,13 @@
 				6E8D920527663B2F00F7FFD0 /* GalleryDetailsView.swift in Sources */,
 				6E0651072764FBFD00EB364D /* ExtensionCompatible.swift in Sources */,
 				6E8D920427663B2F00F7FFD0 /* GalleryDetailsViewController.swift in Sources */,
+				6E8D920C27664DF500F7FFD0 /* SimpleTimer.swift in Sources */,
 				6E0650FE2764FAD300EB364D /* ListViewController.swift in Sources */,
 				6E0650FA2764F5F900EB364D /* GallerySDK.swift in Sources */,
 				6E8D91F62765CF6C00F7FFD0 /* ListViewControllerFactory.swift in Sources */,
 				6E8D91F82765D24F00F7FFD0 /* GalleryItem.swift in Sources */,
 				6E0650F52764F5AD00EB364D /* DefaultAssembly.swift in Sources */,
 				6E0651052764FBA800EB364D /* UIView+install.swift in Sources */,
-				6E8D920A27663B7F00F7FFD0 /* GalleryDetailsCollectionViewCell.swift in Sources */,
 				6E0651022764FAE500EB364D /* ListViewModel.swift in Sources */,
 				6E0651DC27654F5400EB364D /* SceneDelegate.swift in Sources */,
 			);

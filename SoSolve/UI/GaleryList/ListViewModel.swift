@@ -44,14 +44,13 @@ final class ListViewModel {
         switch event {
         case .viewDidLoad:
             fetchContent()
-        case .selected(let galleryItem):
+        case let .selected(galleryItem):
             let navigationService = resolver.resolve(NavigationService.self)!
             navigationService.selected(gallery: galleryItem.gallery)
         }
     }
 
     private func fetchContent() {
-
         let galleryContentService = resolver.resolve(GalleryContentService.self)!
 
         downloadGalleriesTask = Task.detached {
