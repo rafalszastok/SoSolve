@@ -13,6 +13,7 @@ final class ListViewControllerFactory {
         let viewModel = ListViewModel(resolver: resolver)
         let viewController = ListViewController()
         viewController.inject(viewModel: viewModel)
+        viewModel.delegate = viewController
         return viewController
     }
 }

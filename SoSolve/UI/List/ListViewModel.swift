@@ -25,8 +25,9 @@ protocol ListViewModelDelegate: AnyObject {
 }
 
 final class ListViewModel {
+    weak var delegate: ListViewModelDelegate?
+
     private let resolver: Resolver
-    private weak var delegate: ListViewModelDelegate?
 
     private var downloadGalleriesTask: Task<Void, Never>? {
         didSet {

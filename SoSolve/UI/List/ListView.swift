@@ -8,8 +8,9 @@
 import UIKit
 
 final class ListView: UIView {
+
     lazy var collectionView: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
+        let layout = ListView.makeCollectionViewLayout()
         let collectionView = UICollectionView(
             frame: bounds,
             collectionViewLayout: layout
@@ -20,7 +21,6 @@ final class ListView: UIView {
             forCellWithReuseIdentifier: GalleryListCollectionViewCell.reuseIdentifier
         )
 
-        collectionView.contentSize
         return collectionView
 
     }()
@@ -34,11 +34,6 @@ final class ListView: UIView {
 
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        setup()
-    }
-
-    init() {
-        super.init(frame: CGRect.zero)
         setup()
     }
 
@@ -57,5 +52,19 @@ final class ListView: UIView {
             return cell
 
         })
+    }
+
+
+    private static func makeCollectionViewLayout() -> UICollectionViewLayout {
+
+        let sectionProvider = { (sectionIndex: Int, layoutEnvironment: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection? in
+
+            let configution = UICollectionLayoutListConfiguration(appearance: .insetGrouped)
+            let section = NSCollectionLayoutSection.list(using: configution, layoutEnvironment: layoutEnvironment)
+            section.interGroupSpacing = 10
+            return section
+        }
+
+        return UICollectionViewCompositionalLayout(sectionProvider: sectionProvider)
     }
 }
