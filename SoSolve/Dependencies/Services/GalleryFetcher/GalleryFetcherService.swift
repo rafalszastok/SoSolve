@@ -7,11 +7,11 @@
 
 import Foundation
 
-public protocol GalleryContentService {
+public protocol GalleryFetcherService {
     func fetchData() async -> [Gallery]
 }
 
-public final class ConcreteGalleryContentService: GalleryContentService {
+public final class ConcreteGalleryFetcherService: GalleryFetcherService {
     public func fetchData() async -> [Gallery] {
         return await withCheckedContinuation { continuation in
             GallerySDK.fetchData { result in

@@ -41,7 +41,7 @@ final class ListView: UIView {
     }
 
     private static func makeCollectionViewLayout() -> UICollectionViewLayout {
-        let fraction: CGFloat = 1 / 2
+        let fraction: CGFloat = 1 / 4
 
         // Item
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1))

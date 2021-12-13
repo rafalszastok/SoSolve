@@ -11,16 +11,30 @@ enum NavigationScene {
     case detailView(gallery: Gallery)
 }
 
+enum NavigationCustomAction {
+    case dismissCurrentScreen(animated: Bool)
+}
+
 protocol NavigationService {
-    func selected(gallery: Gallery)
     typealias ShowCallback = (NavigationScene) -> Void
+    typealias CustomActionCallback = (NavigationCustomAction) -> Void
+
+    func selected(gallery: Gallery)
+    func dismissCurrentScreen(animated: Bool)
+
     var showCallback: ShowCallback? { get set }
+    var customCallback: CustomActionCallback? { get set }
 }
 
 final class ConcreteNavigationService: NavigationService {
     var showCallback: ShowCallback?
+    var customCallback: CustomActionCallback?
 
     func selected(gallery: Gallery) {
         showCallback?(.detailView(gallery: gallery))
+    }
+
+    func dismissCurrentScreen(animated: Bool) {
+        customCallback?(NavigationCustomAction.dismissCurrentScreen(animated: animated))
     }
 }

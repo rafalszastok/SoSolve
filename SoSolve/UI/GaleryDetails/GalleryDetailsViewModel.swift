@@ -10,7 +10,7 @@ import Swinject
 import UIKit
 
 enum GalleryDetailsViewModelInputEvent {
-    case removeItem
+    case removeButtonTapped
     case viewDidLoad
 }
 
@@ -25,17 +25,25 @@ protocol GalleryDetailsViewModelDelegate: AnyObject {
 final class GalleryDetailsViewModel {
     weak var delegate: GalleryDetailsViewModelDelegate?
 
-    private let refreshDuration: TimeInterval
-    private let resolver: Resolver
+    private let galleryPersistenceService: GalleryPersistenceService
+    private let navigationService: NavigationService
+    private let refreshInterval: TimeInterval
     private let gallery: Gallery
+
     private var imagesToPresent: [URL] = []
     private var currentImageIndex = 0
     private var simpleTimer: SimpleTimer?
 
-    init(resolver: Resolver, gallery: Gallery, refreshDuration: TimeInterval = 10) {
-        self.resolver = resolver
+    init(
+        galleryPersistenceService: GalleryPersistenceService,
+        navigationService: NavigationService,
+        gallery: Gallery,
+        refreshInterval: TimeInterval = 6
+    ) {
+        self.galleryPersistenceService = galleryPersistenceService
+        self.navigationService = navigationService
         self.gallery = gallery
-        self.refreshDuration = refreshDuration
+        self.refreshInterval = refreshInterval
         imagesToPresent = gallery.photoUrls.compactMap { URL(string: $0) }
     }
 
@@ -43,8 +51,10 @@ final class GalleryDetailsViewModel {
         switch event {
         case .viewDidLoad:
             startChangingImages()
-        case .removeItem:
-            break // TODO:
+
+        case .removeButtonTapped:
+            galleryPersistenceService.remove(gallery: gallery)
+            navigationService.dismissCurrentScreen(animated: true)
         }
     }
 
@@ -60,7 +70,7 @@ final class GalleryDetailsViewModel {
         let currentImageUrl = imagesToPresent[currentImageIndex]
         delegate?.show(imageUrl: currentImageUrl)
 
-        simpleTimer = SimpleTimer(delay: refreshDuration, repeats: true, action: {
+        simpleTimer = SimpleTimer(delay: refreshInterval, repeats: true, action: {
             [weak self] in
             self?.changeImage()
         })

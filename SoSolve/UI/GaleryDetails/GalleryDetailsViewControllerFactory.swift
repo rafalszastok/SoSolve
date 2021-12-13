@@ -10,7 +10,11 @@ import Swinject
 
 final class GalleryDetailsViewControllerFactory {
     static func make(resolver: Resolver, gallery: Gallery) -> GalleryDetailsViewController {
-        let viewModel = GalleryDetailsViewModel(resolver: resolver, gallery: gallery)
+        let viewModel = GalleryDetailsViewModel(
+            galleryPersistenceService: resolver.resolve(GalleryPersistenceService.self)!,
+            navigationService: resolver.resolve(NavigationService.self)!,
+            gallery: gallery
+        )
         let viewController = GalleryDetailsViewController()
 
         viewController.inject(viewModel: viewModel)

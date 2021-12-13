@@ -22,12 +22,24 @@ final class FlowRouter {
 
     private func observeNavigation() {
         var navigationService = resolver.resolve(NavigationService.self)
+
         navigationService?.showCallback = {
             [weak self]
             navigationScene in
+
             switch navigationScene {
             case let .detailView(gallery):
                 self?.presentDetails(gallery: gallery)
+            }
+        }
+
+        navigationService?.customCallback = {
+            [weak self]
+            customAction in
+
+            switch customAction {
+            case let .dismissCurrentScreen(animated):
+                self?.navigationController.popViewController(animated: animated)
             }
         }
     }

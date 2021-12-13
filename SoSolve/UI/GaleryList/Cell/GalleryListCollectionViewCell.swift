@@ -12,7 +12,7 @@ struct GalleryListCellStyle {
     static let insets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
     static let interitemSpacing: CGFloat = 16
     static let labelDescriptionSpacing: CGFloat = 16
-    static let imageRatio: CGFloat = 4.0 / 3.0
+    static let imageRatio: CGFloat = 1.0
 
     static func backgroundColor(isSelected: Bool) -> UIColor {
         return isSelected ? .systemOrange : .white
@@ -29,8 +29,9 @@ final class GalleryListCollectionViewCell: UICollectionViewCell {
     var galleryImageView: UIImageView = {
         let image = UIImageView()
         image.backgroundColor = Style.imageBackgroundColor
-        image.contentMode = .scaleAspectFit
+        image.contentMode = .scaleAspectFill
         image.translatesAutoresizingMaskIntoConstraints = false
+        image.clipsToBounds = true
         return image
     }()
 
@@ -61,6 +62,11 @@ final class GalleryListCollectionViewCell: UICollectionViewCell {
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         setup()
+    }
+
+    override func layoutSubviews() {
+        galleryImageView.layer.cornerRadius = round(galleryImageView.bounds.width / 2)
+        super.layoutSubviews()
     }
 
     private func setup() {

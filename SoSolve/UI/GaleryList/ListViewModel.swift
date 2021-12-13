@@ -10,7 +10,7 @@ import Swinject
 import UIKit
 
 enum ListViewModelInputEvent {
-    case viewDidLoad
+    case viewWillAppear
     case selected(GalleryItem)
 }
 
@@ -28,7 +28,8 @@ protocol ListViewModelDelegate: AnyObject {
 final class ListViewModel {
     weak var delegate: ListViewModelDelegate?
 
-    private let resolver: Resolver
+    private let galleryPersistenceService: GalleryPersistenceService
+    private let navigationService: NavigationService
 
     private var downloadGalleriesTask: Task<Void, Never>? {
         didSet {
@@ -36,25 +37,27 @@ final class ListViewModel {
         }
     }
 
-    init(resolver: Resolver) {
-        self.resolver = resolver
+    init(
+        galleryPersistenceService: GalleryPersistenceService,
+        navigationService: NavigationService
+    ) {
+        self.galleryPersistenceService = galleryPersistenceService
+        self.navigationService = navigationService
     }
 
     func input(event: ListViewModelInputEvent) {
         switch event {
-        case .viewDidLoad:
+        case .viewWillAppear:
             fetchContent()
         case let .selected(galleryItem):
-            let navigationService = resolver.resolve(NavigationService.self)!
             navigationService.selected(gallery: galleryItem.gallery)
         }
     }
 
     private func fetchContent() {
-        let galleryContentService = resolver.resolve(GalleryContentService.self)!
-
         downloadGalleriesTask = Task.detached {
-            let galleries = await galleryContentService.fetchData()
+            [unowned self] in
+            let galleries = await self.galleryPersistenceService.visibleGalleries()
                 .filter {
                     gallery in
                     guard let name = gallery.name else {

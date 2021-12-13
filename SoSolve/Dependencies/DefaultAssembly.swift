@@ -10,14 +10,20 @@ import Swinject
 
 final class DefaultAssembly: Assembly {
     func assemble(container: Container) {
-        container.register(GalleryContentService.self, factory: {
+        container.register(GalleryFetcherService.self, factory: {
             _ in
-            ConcreteGalleryContentService()
+            ConcreteGalleryFetcherService()
         })
 
         container.register(NavigationService.self, factory: {
             _ in
             ConcreteNavigationService()
+        })
+
+        container.register(GalleryPersistenceService.self, factory: {
+            resolver in
+            let galleryFetcherService = resolver.resolve(GalleryFetcherService.self)!
+            return ConcreteGalleryPersistenceService(galleryFetcherService: galleryFetcherService)
         })
     }
 }

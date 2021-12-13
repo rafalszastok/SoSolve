@@ -19,7 +19,11 @@ final class ListViewController: UIViewController {
         super.viewDidLoad()
         view.soSolve.layoutInstall(subview: listView)
         setupCollection()
-        viewModel.input(event: .viewDidLoad)
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        viewModel.input(event: .viewWillAppear)
     }
 
     func inject(viewModel: ListViewModel) {

@@ -24,7 +24,7 @@ public enum GallerySDK {
                     ]
                 ),
                 Gallery(
-                    name: nil,
+                    name: "nil",
                     photoUrls:
                     [
                         "https://i.picsum.photos/id/525/400/600.jpg?hmac=_zlzIkPg3CNYPTetyB8vL7b-P9L6ewiA9JPm7zOdnpo",

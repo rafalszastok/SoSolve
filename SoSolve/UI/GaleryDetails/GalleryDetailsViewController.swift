@@ -22,6 +22,11 @@ final class GalleryDetailsViewController: UIViewController {
 
         setupView()
         viewModel.input(event: .viewDidLoad)
+        galleryDetailsView.deleteButton.addTarget(self, action: #selector(removeButtonTapped), for: .touchUpInside)
+    }
+
+    @IBAction func removeButtonTapped() {
+        viewModel.input(event: .removeButtonTapped)
     }
 
     func inject(viewModel: GalleryDetailsViewModel) {
