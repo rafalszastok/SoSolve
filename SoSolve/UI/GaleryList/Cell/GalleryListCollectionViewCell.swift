@@ -39,6 +39,7 @@ final class GalleryListCollectionViewCell: UICollectionViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont(name: "Helvetica", size: 16)
+        label.textColor = .black
         return label
     }()
 
@@ -65,8 +66,8 @@ final class GalleryListCollectionViewCell: UICollectionViewCell {
     }
 
     override func layoutSubviews() {
-        galleryImageView.layer.cornerRadius = round(galleryImageView.bounds.width / 2)
         super.layoutSubviews()
+        galleryImageView.layer.cornerRadius = round(galleryImageView.bounds.width / 2)
     }
 
     private func setup() {

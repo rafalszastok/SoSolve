@@ -63,13 +63,14 @@ final class GalleryDetailsViewModel {
     }
 
     private func startChangingImages() {
-        guard imagesToPresent.count > 1 else {
-            return
-        }
 
         let currentImageUrl = imagesToPresent[currentImageIndex]
         delegate?.show(imageUrl: currentImageUrl)
 
+        guard imagesToPresent.count > 1 else {
+            return
+        }
+        
         simpleTimer = SimpleTimer(delay: refreshInterval, repeats: true, action: {
             [weak self] in
             self?.changeImage()
